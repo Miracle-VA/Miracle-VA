@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const WHATSAPP = /^https:\/\/wa\.me\/639916758363\?text=/;
+const WHATSAPP = /^https:\/\/api\.whatsapp\.com\/send\?phone=639916758363&text=/;
 
 test.describe("Navigation and calls to action", () => {
   test("returning Home from another page lands at the top, not mid-page", async ({ page }, info) => {

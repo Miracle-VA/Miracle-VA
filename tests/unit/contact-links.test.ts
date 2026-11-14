@@ -9,7 +9,8 @@ import { whatsappUrl } from "@/lib/whatsapp";
 describe("whatsappUrl", () => {
   it("opens a chat with her number and a pre-filled message", () => {
     const url = new URL(whatsappUrl());
-    expect(url.origin + url.pathname).toBe("https://wa.me/639916758363");
+    expect(url.origin + url.pathname).toBe("https://api.whatsapp.com/send");
+    expect(url.searchParams.get("phone")).toBe("639916758363");
     expect(url.searchParams.get("text")).toMatch(/^Hi Miracle, /);
   });
 

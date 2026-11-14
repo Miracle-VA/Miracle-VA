@@ -29,7 +29,7 @@ export const primaryNav: readonly NavItem[] = [
 export const legalNav: readonly NavItem[] = [{ label: "Privacy", href: "/privacy" }];
 
 export const contact = {
-  /** E.164 digits only, no "+", as wa.me requires. */
+  /** E.164 digits only, no "+", as WhatsApp click-to-chat links require. */
   whatsappNumber: "639916758363",
   whatsappDisplay: "+63 991 675 8363",
   email: "mangsalmiracle@gmail.com",

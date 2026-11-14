@@ -45,7 +45,7 @@ That is the only variable: there's no form, email service or database.
 
 **No form** (client decision, 2026-11-13). Every contact action links out, so there is nothing to configure or keep running:
 
-- **WhatsApp** (primary): `whatsappUrl()` in `src/lib/whatsapp.ts` builds a `wa.me` link to her number with a pre-filled message.
+- **WhatsApp** (primary): `whatsappUrl()` in `src/lib/whatsapp.ts` builds an `api.whatsapp.com/send` link to her number with a pre-filled message. Not the `wa.me` short link: some networks' DNS misroutes it (seen 2026-11-14).
 - **Email**: `emailUrl()` in `src/lib/email.ts` opens Gmail's compose window (`mail.google.com/mail/?view=cm`) with her address, a subject and an opening line filled in. Visitors without Gmail can copy the address shown beside the button.
 - **LinkedIn**: her profile.
 
@@ -74,7 +74,7 @@ src/
 │   └── ui/               primitives (ButtonLink, icons)
 ├── lib/
 │   ├── site.ts           name, navigation, contact routes: single source of truth
-│   ├── whatsapp.ts       wa.me link builder with pre-filled message
+│   ├── whatsapp.ts       WhatsApp click-to-chat link builder
 │   ├── email.ts          Gmail compose link builder
 │   └── env.ts            validated environment
 └── styles/tokens.css     design tokens

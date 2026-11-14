@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const GMAIL = /^https:\/\/mail\.google\.com\/mail\/\?view=cm&fs=1&to=mangsalmiracle%40gmail\.com&/;
-const WHATSAPP = /^https:\/\/wa\.me\/639916758363\?text=/;
+const WHATSAPP = /^https:\/\/api\.whatsapp\.com\/send\?phone=639916758363&text=/;
 
 /**
  * Contact without a form (client decision, 2026-11-13): every email action
