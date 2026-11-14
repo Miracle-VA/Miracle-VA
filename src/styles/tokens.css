@@ -1,0 +1,207 @@
+/*
+ * Design tokens: Miracle Joy Mangsal, v2.1 "The feature profile", premium editorial.
+ * Source of truth: docs/design-direction.md (client folder), built to the
+ * XU design standard (build-system/06) with materials from the design
+ * library (build-system/07). Direction: bold editorial, in the client's
+ * named palette: Vanilla Silk, Alpine Oat, Warm Greige, Cherry Velvet,
+ * Bordeaux Noir. Hex values sampled from the client's reference image
+ * (2026-11-11); replace with her exact codes if she has them.
+ * Colour strategy: Committed. Cherry and Bordeaux own whole regions.
+ *
+ * Every token in @theme becomes a CSS variable AND generates utilities
+ * (--color-field → bg-field; --ease-out → ease-out; --text-display → text-display).
+ * Never hard-code a colour, size, spacing, duration or curve in a component.
+ */
+
+@theme {
+  /* Reset Tailwind's default palette so only brand colours exist. */
+  --color-*: initial;
+
+  /* Light grounds. Contrast: text on bg 13.2:1, on surface 10.9:1. */
+  --color-bg: #eee6db; /* Vanilla Silk */
+  --color-surface: #dcd2c5; /* Alpine Oat */
+  --color-greige: #b6a99f; /* Warm Greige: Bordeaux 7.1:1 and Cherry 5.7:1 on it */
+  --color-text: #2d1b1f; /* Bordeaux Noir */
+  --color-text-muted: #5e5249; /* from Warm Greige; 6.1:1 on bg, 5.1:1 on surface */
+
+  /* Cherry Velvet: primary action, signature numbers, the hero field. */
+  --color-accent: #5a1c21; /* Cherry Velvet, 10.5:1 on bg */
+  --color-accent-hover: #44141a;
+  --color-accent-contrast: #eee6db; /* Vanilla on Cherry 10.5:1 */
+
+  /* Fields: whole regions in colour. */
+  --color-field: #5a1c21; /* Cherry Velvet */
+  --color-field-dark: #2d1b1f; /* Bordeaux Noir */
+  --color-on-field: #eee6db; /* Vanilla on Bordeaux 13.2:1, on Cherry 10.5:1 */
+  --color-on-field-muted: #c9bcb1; /* on Bordeaux 8.8:1, on Cherry 7.0:1 */
+
+  --color-border: rgb(45 27 31 / 0.14);
+  --color-border-strong: rgb(45 27 31 / 0.32);
+  --color-border-on-field: rgb(238 230 219 / 0.22);
+  --color-success: #2f5d3a;
+  --color-error: #9a3412; /* burnt orange: distinct from the Cherry accent */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Type: Spectral, an editorial serif built for screens (premium, elegant,
+     readable), and a calm grotesk for reading. */
+  --font-display: var(--font-spectral), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500; /* Spectral only; Hanken ships 400 and 600 */
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Fluid scale: min at 320px, max at 1440px. Bigger steps than v1: editorial. */
+  --text-xs: clamp(0.75rem, 0.73rem + 0.09vw, 0.8125rem);
+  --text-xs--line-height: 1.5;
+  --text-sm: clamp(0.875rem, 0.85rem + 0.11vw, 0.9375rem);
+  --text-sm--line-height: 1.55;
+  --text-base: clamp(1.0625rem, 1.04rem + 0.11vw, 1.125rem);
+  --text-base--line-height: 1.6;
+  --text-lg: clamp(1.1875rem, 1.12rem + 0.33vw, 1.4375rem);
+  --text-lg--line-height: 1.5;
+  --text-xl: clamp(1.4rem, 1.25rem + 0.7vw, 2rem);
+  --text-xl--line-height: 1.2;
+  --text-2xl: clamp(1.9rem, 1.55rem + 1.6vw, 3.1rem);
+  --text-2xl--line-height: 1.05;
+  --text-3xl: clamp(2.4rem, 1.85rem + 2.6vw, 4.5rem);
+  --text-3xl--line-height: 0.98;
+  /* Cover line and headline facts. Capped at 6rem (impeccable craft floor). */
+  --text-display: clamp(3rem, 1.9rem + 5.2vw, 6rem);
+  --text-display--line-height: 1.02;
+
+  --tracking-tight: -0.02em;
+  --tracking-tighter: -0.01em;
+  --tracking-display: -0.02em; /* serifs need air at smaller sizes; floor is -0.04em */
+  --tracking-label: 0.14em;
+
+  /* Spacing: one base unit (p-4 = 1rem). */
+  --spacing: 0.25rem;
+
+  /* Layout */
+  --container-content: 82rem; /* max-w-content */
+  --container-prose: 40rem; /* max-w-prose: ~65 characters */
+
+  /* Radius: sharp, like print. */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Depth: soft, offset, for the portrait and overlays only. */
+  --shadow-photo: 0 28px 56px -20px rgb(45 27 31 / 0.5);
+  --shadow-overlay: 0 1px 0 rgb(45 27 31 / 0.06), 0 12px 32px rgb(45 27 31 / 0.12);
+
+  /* Motion curves (build-system/06 §7.2). Personality: Cinematic, restrained. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* things arriving */
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45); /* things leaving */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* things moving across */
+  --default-transition-duration: var(--duration-fast);
+  --default-transition-timing-function: var(--ease-out);
+
+  /* One-shot entrances. Fill mode "backwards" holds the start state during
+     any delay, then releases transform so other classes can still move it.
+     Distances come from --motion-distance, which is 0 under reduced motion. */
+  --animate-rise: rise var(--duration-entrance) var(--ease-out) backwards;
+  --animate-slide-up: slide-up var(--duration-slow) var(--ease-out) backwards;
+  --animate-draw: draw var(--duration-entrance) var(--ease-out) backwards;
+  --animate-unmask: unmask var(--duration-entrance) var(--ease-out) backwards;
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes draw {
+    from {
+      transform: scaleX(var(--motion-draw-from));
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(var(--motion-distance));
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: var(--motion-slide-opacity);
+      transform: translateY(var(--motion-slide));
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Editorial image reveal: a clip opening upward. */
+  @keyframes unmask {
+    from {
+      clip-path: inset(var(--motion-unmask) 0 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+}
+
+/* Non-utility tokens: owned by the page layout, never by sections. */
+:root {
+  /* Section rhythm: 80px on small screens, up to 160px on wide. */
+  --section-y: clamp(5rem, 3.6rem + 7vw, 10rem);
+  /* Page gutter */
+  --gutter: clamp(1.25rem, 0.8rem + 2.2vw, 3rem);
+  /* Header height, used for scroll offset of anchors. */
+  --header-h: 4.75rem;
+  /* Sticky mobile CTA height, reserved at the end of the page on mobile. */
+  --sticky-cta-h: 4.75rem;
+  /* Focus ring: Cherry on light grounds, Vanilla on fields (see globals.css). */
+  --focus-ring: 2px solid var(--color-accent);
+
+  /* Motion durations (build-system/06 §7.2). Mirrored in lib/motion.ts. */
+  --duration-instant: 100ms; /* press feedback */
+  --duration-fast: 160ms; /* hover, focus, exits */
+  --duration-base: 240ms; /* menus, small panels */
+  --duration-slow: 400ms; /* panels, dialogs, item entrances */
+  --duration-entrance: 700ms; /* hero and section choreography */
+  --stagger: 60ms; /* delay between items in a sequence */
+
+  /* Movement amounts. Reduced motion sets these to zero (below). */
+  --motion-distance: 16px;
+  --motion-slide: 100%;
+  --motion-slide-opacity: 1;
+  --motion-draw-from: 0;
+  --motion-unmask: 100%;
+}
+
+/* Reduced motion is designed, not switched off (06 §7.6): no movement,
+   shorter fades, no staggers, no clip reveals. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-distance: 0px;
+    --motion-slide: 0%;
+    --motion-slide-opacity: 0;
+    --motion-draw-from: 1;
+    --motion-unmask: 0%;
+    --duration-slow: 200ms;
+    --duration-entrance: 240ms;
+    --stagger: 0ms;
+  }
+}
