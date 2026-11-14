@@ -37,7 +37,7 @@ Documented in `.env.example`. Copy it to `.env.local` for local work.
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Every build (optional in `next dev`) | Base URL for canonical links, Open Graph and the sitemap. Validated in `src/lib/env.ts`; the build fails if it's missing |
+| `NEXT_PUBLIC_SITE_URL` | Off Vercel only | Base URL for canonical links, Open Graph and the sitemap. On Vercel it's derived automatically (production domain, or the preview URL); set it once her own domain is live. `next dev` defaults to localhost. Anywhere else (local `next build`, CI) the build fails without it. See `src/lib/env.ts` |
 
 That is the only variable: there's no form, email service or database.
 
