@@ -25,5 +25,5 @@ export interface PhotoProps {
 export function Photo({ eager = false, ...image }: PhotoProps) {
   const { props } = getImageProps({ ...image, loading: eager ? "eager" : "lazy" });
   // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text -- alt is in props; this is next/image's own output
-  return <img {...props} />;
+  return <img {...props} draggable={false} />;
 }

@@ -12,6 +12,8 @@ import {
   Mail,
   Menu,
   NavArrowDown,
+  Pause,
+  Play,
   Xmark,
 } from "iconoir-react/regular";
 import type { ComponentType, SVGProps } from "react";
@@ -42,6 +44,9 @@ export const MailIcon = icon(Mail, 18);
 export const ArrowRightIcon = icon(ArrowRight, 18);
 /** Dropdown indicator: a chevron, the recognised signal for "opens a list". */
 export const ChevronDownIcon = icon(NavArrowDown, 18);
+/** Marquee pause/play control. */
+export const PauseIcon = icon(Pause, 18);
+export const PlayIcon = icon(Play, 18);
 export const CheckIcon = icon(Check, 22);
 export const MenuIcon = icon(Menu, 22);
 export const CloseIcon = icon(Xmark, 22);

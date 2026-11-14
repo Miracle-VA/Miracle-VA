@@ -2,6 +2,16 @@
 @import "../styles/tokens.css";
 
 @layer base {
+  /* Her photos and videos are her property (client request, 2026-11-14):
+     no dragging them out, no long-press "Save image" on phones, no selection
+     handles. Right-click is blocked by MediaGuard. A deterrent only. */
+  img,
+  video {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
   html {
     background-color: var(--color-bg);
     color: var(--color-text);
@@ -129,25 +139,30 @@
     }
   }
 
-  /* Signature: the service index band moves sideways as the page scrolls.
-     Driven by the visitor's scroll, never on its own, so it needs no pause
-     control (WCAG 2.2.2). Static under reduced motion or without support. */
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .index-band-track {
-        animation: index-band linear both;
-        animation-timeline: view();
-        animation-range: cover 0% cover 100%;
-      }
+  /* Signature: the service index band loops as a marquee (client request,
+     2026-11-14). Two identical copies slide left by exactly one copy's
+     width, so the loop has no seam. Transform only. It moves on its own, so
+     it has a visible pause control and pauses while off-screen
+     (06 §7.5–7.6, WCAG 2.2.2); static under reduced motion. */
+  .marquee-track {
+    animation: marquee var(--marquee-duration, 48s) linear infinite;
+  }
+  [data-marquee][data-paused] .marquee-track,
+  [data-marquee][data-offscreen] .marquee-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
     }
   }
 
-  @keyframes index-band {
+  @keyframes marquee {
     from {
       transform: translateX(0);
     }
     to {
-      transform: translateX(-35%);
+      transform: translateX(-50%);
     }
   }
 

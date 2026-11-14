@@ -1,28 +1,46 @@
+import { MarqueeControl } from "@/components/sections/marquee-control";
+
 export interface IndexBandProps {
   items: readonly string[];
 }
 
+function Line({ items }: IndexBandProps) {
+  // Trailing padding equals the gap, so two copies join without a seam.
+  return (
+    <div className="flex shrink-0 items-center gap-8 pr-8 md:gap-12 md:pr-12">
+      {items.map((item) => (
+        <span key={item} className="flex items-center gap-8 md:gap-12">
+          <span className="font-display text-2xl font-normal tracking-tight text-on-field">{item}</span>
+          <span className="size-2.5 rotate-45 bg-accent" />
+        </span>
+      ))}
+    </div>
+  );
+}
+
 /**
  * Signature element, part two: her areas set as a contents line on a
- * Bordeaux strip. It moves sideways only as the visitor scrolls (CSS
- * scroll-driven, `.index-band-track` in globals.css); it never moves on its
- * own, so it needs no pause control. Static under reduced motion or in
- * browsers without scroll timelines. Decorative: the services are listed in
- * full below, so screen readers skip this duplicate.
+ * Bordeaux strip, looping as a smooth marquee (client request, 2026-11-14).
+ * Server-rendered; the loop is CSS (`.marquee-track` in globals.css) and only
+ * the pause button is client code. It pauses off-screen and on request, and
+ * is static under reduced motion.
+ *
+ * The moving text is decorative (the services are listed in full below), so
+ * screen readers skip it; the pause button stays reachable.
  */
 export function IndexBand({ items }: IndexBandProps) {
-  const line = [...items, ...items];
   return (
-    <div aria-hidden="true" className="field-dark overflow-hidden py-5 md:py-7">
-      <div className="index-band-track flex w-max items-center gap-8 whitespace-nowrap pl-(--gutter) md:gap-12">
-        {line.map((item, i) => (
-          <span key={`${item}-${i}`} className="flex items-center gap-8 md:gap-12">
-            <span className="font-display text-2xl font-normal tracking-tight text-on-field">
-              {item}
-            </span>
-            <span className="size-2.5 rotate-45 bg-accent" />
-          </span>
-        ))}
+    <div data-marquee className="field-dark relative flex items-center">
+      <div aria-hidden="true" className="min-w-0 flex-1 overflow-hidden py-5 md:py-7">
+        <div className="marquee-track flex w-max">
+          <Line items={items} />
+          <Line items={items} />
+        </div>
+      </div>
+      {/* The control sits on its own strip of the band, faded in from the
+          moving text so nothing slides under it abruptly. */}
+      <div className="relative flex shrink-0 items-center self-stretch bg-field-dark pr-(--gutter) pl-3 before:pointer-events-none before:absolute before:inset-y-0 before:right-full before:w-12 before:bg-linear-to-r before:from-transparent before:to-field-dark motion-reduce:hidden">
+        <MarqueeControl label="the services ticker" />
       </div>
     </div>
   );

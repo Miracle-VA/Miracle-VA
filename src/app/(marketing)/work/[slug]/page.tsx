@@ -167,8 +167,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       <ConversionBlock
         heading={closing.heading}
         text={closing.text}
-        primaryCta={{ label: primaryCtaLabel, href: whatsappUrl(`${c.title.toLowerCase()} work`) }}
-        secondaryCta={{ label: "Or email me", href: emailUrl(`${c.title.toLowerCase()} work`) }}
+        primaryCta={{ label: primaryCtaLabel, href: whatsappUrl(`${c.title} work`) }}
+        secondaryCta={{ label: "Or email me", href: emailUrl(`${c.title} work`) }}
         ctaLocation="case-close"
       />
     </PageTransition>

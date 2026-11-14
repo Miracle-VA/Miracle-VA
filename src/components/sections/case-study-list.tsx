@@ -30,12 +30,19 @@ export function CaseStudyList({ cases, titleLevel = "h3" }: CaseStudyListProps) 
               className="grid gap-4 py-8 md:grid-cols-12 md:items-end md:gap-8 md:py-10"
             >
               <span className="reveal-text md:col-span-7">
-                <Title className="text-2xl transition-colors duration-(--duration-base) group-hover/case:text-accent">
-                  {c.title}
-                </Title>
+                {/* Phones: with no figure to sit beside, the arrow joins the title
+                    row instead of taking a line of its own. */}
+                <span className="flex items-start justify-between gap-4">
+                  <Title className="text-2xl transition-colors duration-(--duration-base) group-hover/case:text-accent">
+                    {c.title}
+                  </Title>
+                  {!fig && <ArrowRightIcon className="mt-1.5 md:hidden size-7 shrink-0 text-text transition-transform duration-(--duration-base) group-hover/case:translate-x-1.5 motion-reduce:transform-none" />}
+                </span>
                 <span className="mt-3 block max-w-[52ch] text-base text-text-muted">{c.summary}</span>
               </span>
-              <span className="reveal-text flex items-end justify-between gap-6 md:col-span-5">
+              <span
+                className={`reveal-text items-end justify-between gap-6 md:col-span-5 ${fig ? "flex" : "hidden md:flex"}`}
+              >
                 {fig ? (
                   <span className="font-display text-3xl font-normal tracking-display tabular-nums text-accent">
                     {fig}

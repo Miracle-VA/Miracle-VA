@@ -83,14 +83,14 @@ export default function AboutPage() {
       </header>
 
       {/* Her story, with the pull quote set large in Cherry. */}
-      <section aria-label="My story" className="container-page grid gap-10 py-(--section-y) md:grid-cols-12 md:gap-8">
-        <div className="grid max-w-prose gap-5 text-lg md:col-span-6">
+      <section aria-label="My story" className="container-page grid gap-10 py-(--section-y) lg:grid-cols-12 lg:gap-8">
+        <div className="grid max-w-prose gap-5 text-lg lg:col-span-6">
           {about.paragraphs.map((p) => (
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
         </div>
-        <blockquote className="border-t-4 border-accent pt-6 md:col-span-5 md:col-start-8">
-          <p className="font-display text-3xl font-normal tracking-tight text-accent">
+        <blockquote className="border-t-4 border-accent pt-6 lg:col-span-5 lg:col-start-8">
+          <p className="max-w-[24ch] font-display text-2xl font-normal tracking-tight text-accent md:text-3xl">
             “{about.pullQuote}”
           </p>
         </blockquote>

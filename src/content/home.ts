@@ -5,7 +5,10 @@
  */
 
 export const hero = {
-  heading: "Your Business Has Enough Moving Parts. Let Me Handle Some of Them.",
+  // Her headline, split so the cover line stays short (client feedback,
+  // 2026-11-14: the two-sentence title felt crowded). Same words, same order.
+  heading: "Your Business Has Enough Moving Parts.",
+  deck: "Let Me Handle Some of Them.",
   subheading:
     "Hi, I'm Miracle Joy! I'm an Executive Assistant who helps business owners, CEOs, and entrepreneurs manage their day-to-day operations, stay organized, and keep things moving.",
   secondaryCta: { label: "View My Work", href: "/work" },

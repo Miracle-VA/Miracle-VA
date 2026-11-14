@@ -52,14 +52,14 @@ export default function ServicesPage() {
       />
 
       <header className="field">
-        <div className="container-page grid gap-10 pt-14 pb-16 md:grid-cols-12 md:gap-8 md:pt-20 md:pb-20">
-          <div className="md:col-span-6">
+        <div className="container-page grid gap-10 pt-14 pb-16 md:pt-20 md:pb-20 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-6">
             <h1 className="text-display font-normal leading-[1] tracking-display">
               {servicesPage.heading}
             </h1>
             <p className="mt-8 max-w-[46ch] text-lg">{servicesPage.intro}</p>
           </div>
-          <nav aria-label="Service areas" className="md:col-span-6 md:pt-3">
+          <nav aria-label="Service areas" className="lg:col-span-6 lg:pt-3">
             <ol className="grid border-t border-border-on-field sm:grid-cols-2 sm:gap-x-8">
               {serviceAreas.map((area) => (
                 <li key={area.id} className="border-b border-border-on-field">
@@ -85,9 +85,9 @@ export default function ServicesPage() {
               <section
                 id={area.id}
                 aria-labelledby={`${area.id}-title`}
-                className="reveal-row grid scroll-mt-28 gap-8 border-t-2 border-text py-12 md:grid-cols-12 md:gap-8 md:py-16"
+                className="reveal-row grid scroll-mt-28 gap-8 border-t-2 border-text py-12 md:py-16 lg:grid-cols-12 lg:gap-8"
               >
-                <div className="reveal-text md:col-span-5">
+                <div className="reveal-text lg:col-span-5">
                   <h2 id={`${area.id}-title`} className="max-w-[16ch] text-3xl">
                     {area.title}
                   </h2>
@@ -99,7 +99,7 @@ export default function ServicesPage() {
                   )}
                 </div>
 
-                <div className="reveal-text md:col-span-7">
+                <div className="reveal-text lg:col-span-7">
                   <ul className="grid gap-x-8 sm:grid-cols-2">
                     {area.items.map((item) => (
                       <li
@@ -119,7 +119,7 @@ export default function ServicesPage() {
                     >
                       {/* One line, no kicker label (craft floor). */}
                       <span className="font-display text-xl font-normal tracking-tighter">
-                        See the {related.title.toLowerCase()} work
+                        See the {related.title} work
                       </span>
                       <span className="flex items-center gap-3 font-semibold text-accent">
                         {related.figure ?? "See the case"}

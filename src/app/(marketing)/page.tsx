@@ -6,10 +6,12 @@ import { Hero } from "@/components/sections/hero";
 import { IndexBand } from "@/components/sections/index-band";
 import { OutcomeProof } from "@/components/sections/outcome-proof";
 import { ServiceGrid } from "@/components/sections/service-grid";
+import { TestimonialBlock } from "@/components/sections/testimonial-block";
 import { ButtonLink } from "@/components/ui/button-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { closing } from "@/content/about";
 import { hero, indexBand, outcomes, services, workTeaser } from "@/content/home";
+import { testimonials } from "@/content/testimonials";
 import { caseStudies } from "@/content/work";
 import { JsonLd } from "@/lib/schema/json-ld";
 import { personSchema, professionalServiceSchema } from "@/lib/schema/person";
@@ -23,9 +25,9 @@ export const metadata: Metadata = {
 
 /**
  * Home, "the feature profile" (docs/design-direction.md v2):
- * cover → index band → headline facts → contents index → selected work → close.
- * Sequence follows docs/blueprint.md; ScenarioBlock, ToolStack, TeamBlock and
- * testimonials come next (testimonials only once permissions exist).
+ * cover → index band → headline facts → contents index → selected work →
+ * testimonials → close. Sequence follows docs/blueprint.md. Testimonials are
+ * her clients' WhatsApp messages as anonymised text (decided 2026-11-14).
  *
  * The page owns vertical rhythm; light sections get padding here, field
  * sections paint their own colour and take their padding as a prop.
@@ -37,6 +39,7 @@ export default function HomePage() {
 
       <Hero
         heading={hero.heading}
+        deck={hero.deck}
         subheading={hero.subheading}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl() }}
         secondaryCta={hero.secondaryCta}
@@ -73,6 +76,14 @@ export default function HomePage() {
           <CaseStudyList cases={caseStudies} />
         </div>
       </section>
+
+      <TestimonialBlock
+        className="py-(--section-y)"
+        heading={testimonials.heading}
+        note={testimonials.note}
+        lead={testimonials.lead}
+        items={testimonials.items}
+      />
 
       <ConversionBlock
         heading={closing.heading}

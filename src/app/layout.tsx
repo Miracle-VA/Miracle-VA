@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Hanken_Grotesk, Spectral } from "next/font/google";
+import { MediaGuard } from "@/components/layout/media-guard";
 import { env } from "@/lib/env";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -62,7 +63,7 @@ const DIRECTION_CONTRACT = `
 THESIS: The feature profile. A business-magazine profile of Miracle Joy: cover line, portrait, headline facts, contents index. Premium and elegant, never minimal (v1 minimal was rejected by the client).
 OWN-WORLD: Client palette at page scale (sampled from her reference card). Cherry Velvet and Bordeaux Noir fields, Vanilla Silk and Alpine Oat grounds, Warm Greige rules. Spectral serif cover lines (400), Hanken body, spaced serif-caps masthead, sharp print corners, Iconoir 1.5 stroke.
 STORY: An owner sees what she takes off their plate, believes it through verified numbers and named work areas, and messages her on WhatsApp.
-FIRST VIEWPORT: Cherry field. Cover line at display size, left 7 cols. Portrait right 5 cols, overlapping the field edge. WhatsApp action under the intro. Service index band at the field's foot.
+FIRST VIEWPORT: Cherry field. Short cover line at display size with a deck under it, left 7 cols. Desktop: portrait right 5 cols, top-aligned with the cover line, on the field. Phones and tablets: one column, portrait crossing the field edge. WhatsApp action under the intro. Service marquee (with pause control) at the hero foot.
 FORM: Bold editorial, pinned by the client (direction question, option 1). Roll not run: pinned direction.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 `;
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <div hidden dangerouslySetInnerHTML={{ __html: `<!--${DIRECTION_CONTRACT}-->` }} />
         {children}
+        <MediaGuard />
       </body>
     </html>
   );
