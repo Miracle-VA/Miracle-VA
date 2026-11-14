@@ -1,7 +1,10 @@
+import { withAccent } from "@/components/ui/accent";
 import type { Testimonial } from "@/content/testimonials";
 
 export interface TestimonialBlockProps {
   heading: string;
+  /** Phrase of the heading set in the script accent. */
+  accent?: string;
   /** Says where the quotes come from, so anonymous words read as real. */
   note: string;
   /** Set large, like a magazine pull quote. */
@@ -21,14 +24,14 @@ export interface TestimonialBlockProps {
  * every quote is visible (02 TestimonialBlock: carousels hide proof).
  * The section paints its own ground, so it takes its padding from the page.
  */
-export function TestimonialBlock({ heading, note, lead, items, id, className }: TestimonialBlockProps) {
+export function TestimonialBlock({ heading, accent, note, lead, items, id, className }: TestimonialBlockProps) {
   return (
     <section id={id} aria-labelledby="testimonials-heading" className={`bg-surface ${className ?? ""}`}>
       <div className="container-page">
         <div className="grid gap-10 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <h2 id="testimonials-heading" className="max-w-[12ch] text-3xl">
-              {heading}
+              {withAccent(heading, accent)}
             </h2>
             <p className="mt-5 max-w-[34ch] text-base text-text-muted">{note}</p>
           </div>

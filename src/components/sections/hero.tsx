@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { ButtonLink } from "@/components/ui/button-link";
+import { withAccent } from "@/components/ui/accent";
 import { Photo } from "@/components/ui/photo";
 import { ArrowRightIcon, ChatIcon } from "@/components/ui/icons";
 
@@ -8,6 +9,8 @@ export interface HeroProps {
   heading: string;
   /** A second line under the cover line, smaller, in the display face. */
   deck?: string;
+  /** Phrase of the deck set in the script accent. */
+  deckAccent?: string;
   /** Who she is and who she helps. */
   subheading?: string;
   /** Primary action. Required: every section that can convert, should. */
@@ -50,6 +53,7 @@ function rise(order: number): { className: string; style: CSSProperties } {
 export function Hero({
   heading,
   deck,
+  deckAccent,
   subheading,
   primaryCta,
   secondaryCta,
@@ -80,7 +84,7 @@ export function Hero({
 
           {deck && (
             <p className="mt-4 max-w-[22ch] font-display text-2xl font-normal leading-[1.2] tracking-tighter text-on-field md:mt-5 md:text-3xl">
-              {deck}
+              {withAccent(deck, deckAccent)}
             </p>
           )}
 

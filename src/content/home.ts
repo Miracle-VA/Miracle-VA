@@ -9,6 +9,8 @@ export const hero = {
   // 2026-11-14: the two-sentence title felt crowded). Same words, same order.
   heading: "Your Business Has Enough Moving Parts.",
   deck: "Let Me Handle Some of Them.",
+  /** Phrase of the deck set in the script accent. */
+  deckAccent: "Some of Them",
   subheading:
     "Hi, I'm Miracle Joy! I'm an Executive Assistant who helps business owners, CEOs, and entrepreneurs manage their day-to-day operations, stay organized, and keep things moving.",
   secondaryCta: { label: "View My Work", href: "/work" },
@@ -51,6 +53,7 @@ export interface OutcomeItem {
 
 export const outcomes = {
   heading: "The numbers so far",
+  accent: "so far",
   items: [
     {
       value: 79,

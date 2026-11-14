@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageTransition } from "@/components/layout/page-transition";
+import { CaseSamples } from "@/components/sections/case-samples";
 import { ConversionBlock } from "@/components/sections/conversion-block";
 import { ButtonLink } from "@/components/ui/button-link";
 import { ArrowRightIcon } from "@/components/ui/icons";
@@ -42,7 +43,8 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
 /**
  * /work/[slug] (content-matrix rows 4–8). Built only from what she supplied:
  * her category summary, her background line, her responsibilities and tools,
- * and the verified figure where one exists. Samples appear once redacted.
+ * the verified figure where one exists, and her samples where she supplied
+ * them (used as supplied).
  */
 export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
@@ -151,6 +153,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         </div>
       </div>
 
+      {c.samples && c.samples.length > 0 && <CaseSamples samples={c.samples} />}
+
       <nav aria-label="Next case" className="bg-surface">
         <Link
           href={`/work/${next.slug}`}
@@ -166,6 +170,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
 
       <ConversionBlock
         heading={closing.heading}
+        accent={closing.accent}
         text={closing.text}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl(`${c.title} work`) }}
         secondaryCta={{ label: "Or email me", href: emailUrl(`${c.title} work`) }}

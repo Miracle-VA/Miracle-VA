@@ -1,8 +1,11 @@
 import { ButtonLink } from "@/components/ui/button-link";
 import { ArrowRightIcon, ChatIcon } from "@/components/ui/icons";
+import { withAccent } from "@/components/ui/accent";
 
 export interface ConversionBlockProps {
   heading: string;
+  /** Phrase of the heading set in the script accent. */
+  accent?: string;
   text: string;
   primaryCta: { label: string; href: string };
   /** Alternative route for people who'd rather write. */
@@ -19,6 +22,7 @@ export interface ConversionBlockProps {
  */
 export function ConversionBlock({
   heading,
+  accent,
   text,
   primaryCta,
   secondaryCta,
@@ -32,7 +36,7 @@ export function ConversionBlock({
           id={`${ctaLocation}-close`}
           className="max-w-[14ch] text-display font-normal leading-[1] tracking-display md:col-span-7"
         >
-          {heading}
+          {withAccent(heading, accent)}
         </h2>
         <div className="md:col-span-5">
           <p className="max-w-[44ch] text-lg">{text}</p>

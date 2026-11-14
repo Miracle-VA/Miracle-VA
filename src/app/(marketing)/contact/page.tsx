@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PageTransition } from "@/components/layout/page-transition";
+import { withAccent } from "@/components/ui/accent";
 import { ButtonLink } from "@/components/ui/button-link";
+import { Photo } from "@/components/ui/photo";
 import { ArrowRightIcon, ChatIcon, MailIcon } from "@/components/ui/icons";
 import { closing } from "@/content/about";
 import { JsonLd } from "@/lib/schema/json-ld";
@@ -37,7 +39,7 @@ export default function ContactPage() {
               id="contact-heading"
               className="max-w-[12ch] text-display font-normal leading-[1] tracking-display"
             >
-              {closing.heading}
+              {withAccent(closing.heading, closing.accent)}
             </h1>
             <p className="mt-8 max-w-[44ch] text-lg">{closing.text}</p>
 
@@ -92,6 +94,16 @@ export default function ContactPage() {
 
         <section aria-labelledby="email-heading" className="bg-surface">
           <div className="mx-auto max-w-[calc(var(--container-content)/2)] px-(--gutter) pt-12 pb-(--section-y) md:pt-20 lg:mr-auto lg:pl-12">
+            <div className="relative mb-10 aspect-[4/5] w-full max-w-[16rem] overflow-hidden rounded-sm shadow-photo md:mb-12">
+              <Photo
+                src="/images/miracle-joy-mangsal-portrait-beige-blazer.png"
+                alt="Miracle Joy Mangsal at her desk in a beige blazer, with a laptop, notebook and phone"
+                width={1024}
+                height={1536}
+                sizes="16rem"
+                className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
+              />
+            </div>
             <h2 id="email-heading" className="max-w-[14ch] text-3xl">
               Or send me an email
             </h2>

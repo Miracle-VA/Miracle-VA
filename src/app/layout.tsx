@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Spectral } from "next/font/google";
+import { Allura, Hanken_Grotesk, Spectral } from "next/font/google";
 import { MediaGuard } from "@/components/layout/media-guard";
 import { env } from "@/lib/env";
 import { site } from "@/lib/site";
@@ -21,6 +21,19 @@ const spectral = Spectral({
   // line in a system serif (craft floor refuses a system display face), and
   // it did not improve LCP in testing. The face is preloaded.
   display: "swap",
+});
+
+/**
+ * Script accent: a short phrase in a few headings (client request,
+ * 2026-11-14: "a little cursive"). Allura: a refined copperplate script that
+ * stays legible at heading sizes. Not preloaded: it never carries the LCP.
+ */
+const allura = Allura({
+  variable: "--font-allura",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  preload: false,
 });
 
 /** Body: her long first-person copy, forms, captions. */
@@ -70,7 +83,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${spectral.variable} ${hanken.variable}`}>
+    <html lang="en" className={`${spectral.variable} ${hanken.variable} ${allura.variable}`}>
       <body>
         <div hidden dangerouslySetInnerHTML={{ __html: `<!--${DIRECTION_CONTRACT}-->` }} />
         {children}

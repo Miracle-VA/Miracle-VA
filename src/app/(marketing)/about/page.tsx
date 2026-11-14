@@ -145,6 +145,7 @@ export default function AboutPage() {
 
       <ConversionBlock
         heading={closing.heading}
+        accent={closing.accent}
         text={closing.text}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl("about page") }}
         secondaryCta={{ label: "Or email me", href: emailUrl() }}

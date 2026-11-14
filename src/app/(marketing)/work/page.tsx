@@ -43,6 +43,7 @@ export default function WorkPage() {
 
       <ConversionBlock
         heading={closing.heading}
+        accent={closing.accent}
         text={closing.text}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl("work") }}
         secondaryCta={{ label: "Or email me", href: emailUrl() }}

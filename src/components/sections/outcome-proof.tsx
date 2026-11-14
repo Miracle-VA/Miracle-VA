@@ -1,7 +1,10 @@
+import { withAccent } from "@/components/ui/accent";
 import { OutcomeStat } from "@/components/sections/outcome-stat";
 
 export interface OutcomeProofProps {
   heading: string;
+  /** Phrase of the heading set in the script accent. */
+  accent?: string;
   /** Verified results only (CLAUDE.md: no other numbers). */
   items: ReadonlyArray<{
     value: number;
@@ -19,11 +22,11 @@ export interface OutcomeProofProps {
  * Cherry Velvet at display size and runs straight into its sentence, the way
  * a magazine profile sets a key fact. Each counts up once as it enters view.
  */
-export function OutcomeProof({ heading, items, id }: OutcomeProofProps) {
+export function OutcomeProof({ heading, accent, items, id }: OutcomeProofProps) {
   return (
     <section id={id} aria-labelledby="outcomes-heading" className="container-page">
       <h2 id="outcomes-heading" className="max-w-[16ch] text-3xl">
-        {heading}
+        {withAccent(heading, accent)}
       </h2>
 
       <ul className="mt-10 border-b-2 border-text md:mt-14">

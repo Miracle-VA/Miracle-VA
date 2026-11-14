@@ -156,6 +156,7 @@ export default function ServicesPage() {
 
       <ConversionBlock
         heading={closing.heading}
+        accent={closing.accent}
         text={closing.text}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl("services") }}
         secondaryCta={{ label: "Or email me", href: emailUrl() }}

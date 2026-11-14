@@ -76,6 +76,16 @@
 }
 
 @layer components {
+  /* Script accent phrase. Allura's x-height is small, so it's set larger
+     than the surrounding serif to match its weight; line-height stays put. */
+  .font-script {
+    font-family: var(--font-script);
+    font-size: 1.32em;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.9;
+  }
+
   /* Page container: the one place horizontal rhythm is defined. */
   .container-page {
     width: 100%;

@@ -19,6 +19,7 @@ const source = "Client · WhatsApp message";
 
 export const testimonials = {
   heading: "In my clients' words",
+  accent: "words",
   note: "Excerpts from messages clients have sent me on WhatsApp. Names are left out to protect their privacy.",
   lead: {
     quote:
@@ -46,6 +47,7 @@ export const testimonials = {
   ],
 } as const satisfies {
   heading: string;
+  accent: string;
   note: string;
   lead: Testimonial;
   items: readonly Testimonial[];

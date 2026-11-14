@@ -86,7 +86,7 @@ src/
 - **Primary action is WhatsApp**, built with `whatsappUrl()`; email links use `emailUrl()`, never `mailto:`. Every CTA carries `data-cta` and `data-cta-location` attributes for analytics.
 - **No colour, size or spacing literals in components.** Use the tokens.
 - **Sections don't set their own outer spacing.** The page layout owns rhythm (`.section-y`, `.container-page`).
-- **Work samples must be redacted before they enter `public/`.** No former client's names, brands, contact details or faces without written permission.
+- **Work samples are used as supplied** (XU decision, 2026-11-14) and live in `public/images/work/` and `public/videos/work/`, listed per case in `src/content/work.ts`. Videos are re-encoded to 720×1280 H.264 MP4 with a poster; keep them under ~8 MB where possible. Their captions are burned in: add a `.vtt` (`captions` field) for any with uncaptioned speech.
 - **Testimonials are text only**, transcribed from her client messages (`src/content/testimonials.ts`). Never screenshots, never invented.
 - **Her photos and videos are protected** from casual saving (`src/components/layout/media-guard.tsx` + `globals.css`). Use `Photo` for images (non-draggable) and `controlsList="nodownload"` on any `<video>`.
 - **Only verified numbers may be published:** 79 booked appointments at $4.86 per booking; approximately 21,000 Instagram views on one post; more than 11,000 emails removed or organised.

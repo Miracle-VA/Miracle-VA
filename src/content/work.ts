@@ -8,9 +8,12 @@
  * - `tools`: her §06 tools relevant to the area.
  * - `metric`: only the three verified results (CLAUDE.md).
  *
+ * - `samples`: her work samples from client-info, shown as supplied
+ *   (decision 2026-11-14: use the materials as they are). Captions are XU's
+ *   plain descriptions of each piece.
+ *
  * Still needed from her (docs/content-matrix.md): the specific situation for
- * each case and redacted samples. Until samples are redacted and approved,
- * case pages show no images (client rule: anonymise everything).
+ * each case.
  */
 
 export interface CaseMetric {
@@ -23,6 +26,20 @@ export interface CaseMetric {
   detail: string;
 }
 
+/** A work sample: an image (through next/image) or a 9:16 video reel. */
+export type CaseSample =
+  | { kind: "image"; src: string; alt: string; width: number; height: number; caption: string }
+  | {
+      kind: "video";
+      src: string;
+      poster: string;
+      label: string;
+      caption: string;
+      /** WebVTT captions, if any. The reels supplied so far carry captions
+       *  burned into the picture; add a .vtt for any with uncaptioned speech. */
+      captions?: string;
+    };
+
 export interface CaseStudy {
   slug: string;
   title: string;
@@ -34,13 +51,14 @@ export interface CaseStudy {
   metric?: CaseMetric;
   /** Anchor on /services for the matching area. */
   serviceId: string;
+  samples?: CaseSample[];
   seo: { title: string; description: string };
 }
 
 export const workPage = {
   heading: "Selected work",
   intro:
-    "My work spans executive assistance, client relations, digital advertising, CRM systems, project coordination, social media, and real estate and construction operations. Client names and private details are kept out of every example.",
+    "My work spans executive assistance, client relations, digital advertising, CRM systems, project coordination, social media, and real estate and construction operations.",
 } as const;
 
 export const caseStudies: CaseStudy[] = [
@@ -91,6 +109,46 @@ export const caseStudies: CaseStudy[] = [
       detail: "On a single social media post.",
     },
     serviceId: "social-media",
+    samples: [
+      {
+        kind: "image",
+        src: "/images/work/event-flyer-red-affair.png",
+        alt: "Event flyer for \"A Red Affair: A Boss Babes Galentines\", a women's real estate networking event on 11 February, with photos of six speakers",
+        width: 615,
+        height: 615,
+        caption: "Event flyer for a women's real estate networking event",
+      },
+      {
+        kind: "image",
+        src: "/images/work/instagram-views-90-days.png",
+        alt: "Instagram insights screen showing views over the last 90 days, split by followers and non-followers and by content type",
+        width: 285,
+        height: 615,
+        caption: "Instagram insights: 90-day views report",
+      },
+      {
+        kind: "image",
+        src: "/images/work/instagram-profile.png",
+        alt: "A real estate client's Instagram profile, with highlights and pinned posts",
+        width: 285,
+        height: 615,
+        caption: "A client's Instagram profile",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/investor-motivation-reel.mp4",
+        poster: "/videos/work/investor-motivation-reel-poster.jpg",
+        label: "Investor motivation reel: a speaker talks about continuing to invest, with on-screen captions",
+        caption: "Talking-head reel with captions",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/podcast-episode-promo.mp4",
+        poster: "/videos/work/podcast-episode-promo-poster.jpg",
+        label: "Podcast episode promo clip with captions and b-roll",
+        caption: "Podcast episode promo",
+      },
+    ],
     seo: {
       title: "Social Media & Content Case",
       description:
@@ -160,6 +218,75 @@ export const caseStudies: CaseStudy[] = [
     ],
     tools: ["Canva", "CapCut", "Meta Business Suite", "Google Business Profile", "ClickUp", "Google Sheets"],
     serviceId: "real-estate-construction",
+    samples: [
+      {
+        kind: "image",
+        src: "/images/work/rental-listing-panama-city.png",
+        alt: "Rental listing graphic: single-family house for rent in Panama City, 3 bedrooms and 2 bathrooms, with photos of the exterior and interior",
+        width: 1080,
+        height: 1080,
+        caption: "Rental listing graphic, Panama City",
+      },
+      {
+        kind: "image",
+        src: "/images/work/rental-listing-ocala.png",
+        alt: "\"For rent\" graphic for a two-storey home in Ocala with 4 bedrooms, 2 bathrooms and a private pool",
+        width: 1254,
+        height: 1254,
+        caption: "Rental listing graphic, Ocala",
+      },
+      {
+        kind: "image",
+        src: "/images/work/price-drop-ocala.png",
+        alt: "\"Price drop\" graphic for a two-storey home in Ocala",
+        width: 1254,
+        height: 1254,
+        caption: "Price-drop announcement",
+      },
+      {
+        kind: "image",
+        src: "/images/work/just-sold-sacramento.png",
+        alt: "\"Just sold\" graphic for a house in Sacramento, featuring the listing agent",
+        width: 492,
+        height: 615,
+        caption: "“Just sold” announcement",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/rental-walkthrough-reel.mp4",
+        poster: "/videos/work/rental-walkthrough-reel-poster.jpg",
+        label: "Rental walkthrough reel of an apartment, with room details as on-screen text",
+        caption: "Rental walkthrough reel",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/house-for-sale-reel.mp4",
+        poster: "/videos/work/house-for-sale-reel-poster.jpg",
+        label: "House-for-sale reel showing the yard, the street and the home's interior",
+        caption: "House-for-sale reel",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/build-progress-reel.mp4",
+        poster: "/videos/work/build-progress-reel-poster.jpg",
+        label: "Construction reel: aerial footage of a finished development, then how it started",
+        caption: "Build-progress reel",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/blueprints-to-reality-reel.mp4",
+        poster: "/videos/work/blueprints-to-reality-reel-poster.jpg",
+        label: "\"From blueprints to reality\" construction progress reel with aerial shots",
+        caption: "Construction progress reel",
+      },
+      {
+        kind: "video",
+        src: "/videos/work/kickoff-event-recap.mp4",
+        poster: "/videos/work/kickoff-event-recap-poster.jpg",
+        label: "Recap reel of a kickoff event for a new townhome development, with aerial and event footage",
+        caption: "Kickoff event recap",
+      },
+    ],
     seo: {
       title: "Real Estate & Construction Support Case",
       description:

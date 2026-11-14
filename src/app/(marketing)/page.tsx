@@ -40,6 +40,7 @@ export default function HomePage() {
       <Hero
         heading={hero.heading}
         deck={hero.deck}
+        deckAccent={hero.deckAccent}
         subheading={hero.subheading}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl() }}
         secondaryCta={hero.secondaryCta}
@@ -52,7 +53,7 @@ export default function HomePage() {
       <IndexBand items={indexBand} />
 
       <div className="section-y">
-        <OutcomeProof heading={outcomes.heading} items={outcomes.items} />
+        <OutcomeProof heading={outcomes.heading} accent={outcomes.accent} items={outcomes.items} />
       </div>
 
       <ServiceGrid
@@ -80,6 +81,7 @@ export default function HomePage() {
       <TestimonialBlock
         className="py-(--section-y)"
         heading={testimonials.heading}
+        accent={testimonials.accent}
         note={testimonials.note}
         lead={testimonials.lead}
         items={testimonials.items}
@@ -87,6 +89,7 @@ export default function HomePage() {
 
       <ConversionBlock
         heading={closing.heading}
+        accent={closing.accent}
         text={closing.text}
         primaryCta={{ label: primaryCtaLabel, href: whatsappUrl() }}
         secondaryCta={{ label: "Or email me", href: emailUrl() }}

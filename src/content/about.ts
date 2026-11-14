@@ -85,5 +85,7 @@ export const whyWorkWithMe = {
 /** Closing call to action used on several pages: her §10 copy. */
 export const closing = {
   heading: "Need an extra hand with your business?",
+  /** Phrase set in the script accent. */
+  accent: "extra hand",
   text: "Whether you need help with your schedule, client communication, marketing, or projects, I'd love to hear what you're working on. Tell me a little about your business and what support you need, and let's see if we're a good fit.",
 } as const;

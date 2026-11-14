@@ -47,6 +47,8 @@
      readable), and a calm grotesk for reading. */
   --font-display: var(--font-spectral), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  /* Accent only: one phrase in a few headings (src/components/ui/accent.tsx). */
+  --font-script: var(--font-allura), "Snell Roundhand", cursive;
 
   --font-weight-light: 300;
   --font-weight-normal: 400;
